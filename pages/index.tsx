@@ -1,174 +1,384 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useEffect, useRef } from "react";
-import Bridge from "../components/Icons/Bridge";
-import Logo from "../components/Icons/Logo";
-import Modal from "../components/Modal";
-import cloudinary from "../utils/cloudinary";
-import getBase64ImageUrl from "../utils/generateBlurPlaceholder";
-import type { ImageProps } from "../utils/types";
-import { useLastViewedPhoto } from "../utils/useLastViewedPhoto";
 
-const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
-  const router = useRouter();
-  const { photoId } = router.query;
-  const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto();
-
-  const lastViewedPhotoRef = useRef<HTMLAnchorElement>(null);
-
-  useEffect(() => {
-    // This effect keeps track of the last viewed photo in the modal to keep the index page in sync when the user navigates back
-    if (lastViewedPhoto && !photoId) {
-      lastViewedPhotoRef.current.scrollIntoView({ block: "center" });
-      setLastViewedPhoto(null);
-    }
-  }, [photoId, lastViewedPhoto, setLastViewedPhoto]);
-
+const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Next.js Conf 2022 Photos</title>
+        <title>Home Page Update Plan</title>
         <meta
-          property="og:image"
-          content="https://nextjsconf-pics.vercel.app/og-image.png"
-        />
-        <meta
-          name="twitter:image"
-          content="https://nextjsconf-pics.vercel.app/og-image.png"
+          name="description"
+          content="A phased, actionable plan to modernize the home page with stronger design, content, UX, navigation, interaction, conversion, and accessibility."
         />
       </Head>
-      <main className="mx-auto max-w-[1960px] p-4">
-        {photoId && (
-          <Modal
-            images={images}
-            onClose={() => {
-              setLastViewedPhoto(photoId);
-            }}
-          />
-        )}
-        <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4">
-          <div className="after:content relative mb-5 flex h-[629px] flex-col items-center justify-end gap-4 overflow-hidden rounded-lg bg-white/10 px-6 pb-16 pt-64 text-center text-white shadow-highlight after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight lg:pt-0">
-            <div className="absolute inset-0 flex items-center justify-center opacity-20">
-              <span className="flex max-h-full max-w-full items-center justify-center">
-                <Bridge />
+      <main className="mx-auto flex max-w-6xl flex-col gap-16 px-6 py-12 text-white">
+        <section className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-highlight">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/60">
+            Home Page Update Plan
+          </p>
+          <h1 className="mt-4 text-4xl font-semibold leading-tight md:text-5xl">
+            Modernize the home page with clarity, confidence, and conversion in
+            mind.
+          </h1>
+          <p className="mt-4 max-w-2xl text-lg text-white/70">
+            This plan balances creativity with best practices to deliver a
+            homepage that feels fresh, guides users with purpose, and supports
+            business goals. Each section outlines objectives, recommendations,
+            and tangible deliverables to move from strategy to execution.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            {[
+              "Design",
+              "Content",
+              "User Experience",
+              "Navigation",
+              "Interaction",
+              "Conversion",
+              "Performance & Accessibility",
+            ].map((pill) => (
+              <span
+                key={pill}
+                className="rounded-full border border-white/20 px-4 py-2 text-sm text-white/70"
+              >
+                {pill}
               </span>
-              <span className="absolute left-0 right-0 bottom-0 h-[400px] bg-gradient-to-b from-black/0 via-black to-black"></span>
-            </div>
-            <Logo />
-            <h1 className="mt-8 mb-4 text-base font-bold uppercase tracking-widest">
-              2022 Event Photos
-            </h1>
-            <p className="max-w-[40ch] text-white/75 sm:max-w-[32ch]">
-              Our incredible Next.js community got together in San Francisco for
-              our first ever in-person conference!
-            </p>
-            <a
-              className="pointer z-10 mt-6 rounded-lg border border-white bg-white px-3 py-2 text-sm font-semibold text-black transition hover:bg-white/10 hover:text-white md:mt-4"
-              href="https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-cloudinary&project-name=nextjs-image-gallery&repository-name=with-cloudinary&env=NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,CLOUDINARY_API_KEY,CLOUDINARY_API_SECRET,CLOUDINARY_FOLDER&envDescription=API%20Keys%20from%20Cloudinary%20needed%20to%20run%20this%20application"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Clone and Deploy
-            </a>
+            ))}
           </div>
-          {images.map(({ id, public_id, format, blurDataUrl }) => (
-            <Link
-              key={id}
-              href={`/?photoId=${id}`}
-              as={`/p/${id}`}
-              ref={id === Number(lastViewedPhoto) ? lastViewedPhotoRef : null}
-              shallow
-              className="after:content group relative mb-5 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
-            >
-              <Image
-                alt="Next.js Conf photo"
-                className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
-                style={{ transform: "translate3d(0, 0, 0)" }}
-                placeholder="blur"
-                blurDataURL={blurDataUrl}
-                src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_720/${public_id}.${format}`}
-                width={720}
-                height={480}
-                sizes="(max-width: 640px) 100vw,
-                  (max-width: 1280px) 50vw,
-                  (max-width: 1536px) 33vw,
-                  25vw"
-              />
-            </Link>
-          ))}
-        </div>
+        </section>
+
+        <section className="grid gap-6 lg:grid-cols-2">
+          <div className="rounded-2xl border border-white/10 bg-black/40 p-8">
+            <h2 className="text-2xl font-semibold">Design</h2>
+            <p className="mt-3 text-white/70">
+              Refresh the visual language to feel premium, current, and
+              trustworthy without overwhelming visitors.
+            </p>
+            <div className="mt-6 space-y-4">
+              <div>
+                <h3 className="text-lg font-semibold text-white">Objectives</h3>
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-white/70">
+                  <li>Establish a cohesive brand system and hierarchy.</li>
+                  <li>Highlight key value props above the fold.</li>
+                  <li>Use whitespace to improve scanning.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white">
+                  Recommendations
+                </h3>
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-white/70">
+                  <li>
+                    Introduce a hero background, refined typography, and a
+                    modern color palette.
+                  </li>
+                  <li>
+                    Add visual emphasis for core CTAs with contrasting colors.
+                  </li>
+                  <li>
+                    Create reusable UI components for consistency (cards,
+                    buttons, badges).
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white">
+                  Deliverables
+                </h3>
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-white/70">
+                  <li>Updated design system (colors, type scale, spacing).</li>
+                  <li>Homepage wireframes + high-fidelity mockups.</li>
+                  <li>Component library in Figma or code.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-white/10 bg-black/40 p-8">
+            <h2 className="text-2xl font-semibold">Content</h2>
+            <p className="mt-3 text-white/70">
+              Ensure messaging is concise, benefit-driven, and tailored to top
+              user intents.
+            </p>
+            <div className="mt-6 space-y-4">
+              <div>
+                <h3 className="text-lg font-semibold text-white">Objectives</h3>
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-white/70">
+                  <li>Clarify what the company does in 5 seconds.</li>
+                  <li>Address core audience pain points and outcomes.</li>
+                  <li>Support trust through proof points.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white">
+                  Recommendations
+                </h3>
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-white/70">
+                  <li>
+                    Rewrite hero headline and subheadline to be outcome-focused.
+                  </li>
+                  <li>Introduce scannable sections with short paragraphs.</li>
+                  <li>
+                    Add social proof: testimonials, logos, metrics, or awards.
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white">
+                  Deliverables
+                </h3>
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-white/70">
+                  <li>Homepage copy deck with headline variations.</li>
+                  <li>Proof-point module content (quotes, stats, logos).</li>
+                  <li>SEO-friendly meta titles and descriptions.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-white/10 bg-black/40 p-8">
+            <h2 className="text-2xl font-semibold">User Experience</h2>
+            <p className="mt-3 text-white/70">
+              Guide visitors through a clear narrative that reduces friction and
+              supports decision-making.
+            </p>
+            <div className="mt-6 space-y-4">
+              <div>
+                <h3 className="text-lg font-semibold text-white">Objectives</h3>
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-white/70">
+                  <li>Reduce cognitive load with clear structure.</li>
+                  <li>Address the top questions proactively.</li>
+                  <li>Encourage exploration without dead ends.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white">
+                  Recommendations
+                </h3>
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-white/70">
+                  <li>
+                    Use modular sections: value prop, benefits, social proof,
+                    use cases, CTA.
+                  </li>
+                  <li>
+                    Include a quick “how it works” or “who it’s for” block.
+                  </li>
+                  <li>Ensure scroll progression feels intentional.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white">
+                  Deliverables
+                </h3>
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-white/70">
+                  <li>User journey map for homepage.</li>
+                  <li>Priority questions + placement plan.</li>
+                  <li>Section order blueprint.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-white/10 bg-black/40 p-8">
+            <h2 className="text-2xl font-semibold">Navigation</h2>
+            <p className="mt-3 text-white/70">
+              Streamline paths to core pages and reduce the number of decisions
+              required.
+            </p>
+            <div className="mt-6 space-y-4">
+              <div>
+                <h3 className="text-lg font-semibold text-white">Objectives</h3>
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-white/70">
+                  <li>Prioritize critical destinations.</li>
+                  <li>Make navigation intuitive on desktop and mobile.</li>
+                  <li>Keep the header lightweight yet informative.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white">
+                  Recommendations
+                </h3>
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-white/70">
+                  <li>
+                    Limit primary nav to 4–6 items; group secondary links in the
+                    footer.
+                  </li>
+                  <li>Add a persistent CTA button in the header.</li>
+                  <li>
+                    Use clear labels: “Solutions,” “Pricing,” “Resources.”
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white">
+                  Deliverables
+                </h3>
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-white/70">
+                  <li>Updated navigation sitemap.</li>
+                  <li>Responsive header + footer specs.</li>
+                  <li>Clickable navigation prototype.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-white/10 bg-black/40 p-8">
+            <h2 className="text-2xl font-semibold">Interaction</h2>
+            <p className="mt-3 text-white/70">
+              Use subtle motion and micro-interactions to reinforce clarity and
+              keep users engaged.
+            </p>
+            <div className="mt-6 space-y-4">
+              <div>
+                <h3 className="text-lg font-semibold text-white">Objectives</h3>
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-white/70">
+                  <li>Make the page feel responsive and modern.</li>
+                  <li>Provide feedback for user actions.</li>
+                  <li>Keep interactions lightweight and accessible.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white">
+                  Recommendations
+                </h3>
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-white/70">
+                  <li>
+                    Add hover states, subtle section reveals, and CTA emphasis.
+                  </li>
+                  <li>Use iconography to support scannability.</li>
+                  <li>Keep animations under 200–300ms.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white">
+                  Deliverables
+                </h3>
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-white/70">
+                  <li>Micro-interaction guidelines.</li>
+                  <li>Motion specs for hero + section transitions.</li>
+                  <li>Icon set mapped to key benefits.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-white/10 bg-black/40 p-8">
+            <h2 className="text-2xl font-semibold">Conversion Optimization</h2>
+            <p className="mt-3 text-white/70">
+              Ensure the homepage drives measurable actions while building
+              trust.
+            </p>
+            <div className="mt-6 space-y-4">
+              <div>
+                <h3 className="text-lg font-semibold text-white">Objectives</h3>
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-white/70">
+                  <li>Increase CTA clicks and qualified leads.</li>
+                  <li>Reduce drop-off in the first screen.</li>
+                  <li>Align messaging with conversion intent.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white">
+                  Recommendations
+                </h3>
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-white/70">
+                  <li>
+                    Use a primary CTA and a secondary “learn more” option.
+                  </li>
+                  <li>
+                    Add a conversion-friendly section: demo booking, lead form,
+                    or product tour.
+                  </li>
+                  <li>Position testimonials near CTAs.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white">
+                  Deliverables
+                </h3>
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-white/70">
+                  <li>CTA hierarchy and placement plan.</li>
+                  <li>Conversion module mockup (form, demo, or funnel).</li>
+                  <li>A/B test backlog with hypotheses.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-white/10 bg-black/40 p-8">
+            <h2 className="text-2xl font-semibold">
+              Performance & Accessibility
+            </h2>
+            <p className="mt-3 text-white/70">
+              Deliver a fast, inclusive experience that meets modern standards.
+            </p>
+            <div className="mt-6 space-y-4">
+              <div>
+                <h3 className="text-lg font-semibold text-white">Objectives</h3>
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-white/70">
+                  <li>Improve Core Web Vitals.</li>
+                  <li>Ensure WCAG 2.2 AA compliance.</li>
+                  <li>Reduce load time across devices.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white">
+                  Recommendations
+                </h3>
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-white/70">
+                  <li>Optimize hero imagery and lazy-load below the fold.</li>
+                  <li>Use semantic headings and accessible color contrast.</li>
+                  <li>Audit scripts and remove unused assets.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white">
+                  Deliverables
+                </h3>
+                <ul className="mt-2 list-disc space-y-1 pl-6 text-white/70">
+                  <li>Performance budget + Lighthouse targets.</li>
+                  <li>Accessibility checklist with remediation tasks.</li>
+                  <li>Updated image and font loading strategy.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="rounded-2xl border border-white/10 bg-white/5 p-8">
+          <h2 className="text-2xl font-semibold">Phased Execution Timeline</h2>
+          <div className="mt-6 grid gap-6 lg:grid-cols-3">
+            <div className="rounded-xl border border-white/10 bg-black/40 p-6">
+              <h3 className="text-lg font-semibold">Phase 1: Quick Wins</h3>
+              <p className="mt-2 text-white/70">1–2 weeks</p>
+              <ul className="mt-4 list-disc space-y-1 pl-6 text-white/70">
+                <li>Rewrite hero headline and CTA.</li>
+                <li>Adjust navigation labels and order.</li>
+                <li>Add proof points and testimonials.</li>
+              </ul>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-black/40 p-6">
+              <h3 className="text-lg font-semibold">Phase 2: Deep Enhancements</h3>
+              <p className="mt-2 text-white/70">3–6 weeks</p>
+              <ul className="mt-4 list-disc space-y-1 pl-6 text-white/70">
+                <li>Implement new design system and components.</li>
+                <li>Build conversion module and content blocks.</li>
+                <li>Introduce motion + interaction layer.</li>
+              </ul>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-black/40 p-6">
+              <h3 className="text-lg font-semibold">Phase 3: Optimization</h3>
+              <p className="mt-2 text-white/70">Ongoing</p>
+              <ul className="mt-4 list-disc space-y-1 pl-6 text-white/70">
+                <li>Run A/B tests on CTAs and hero layouts.</li>
+                <li>Monitor performance and accessibility scores.</li>
+                <li>Iterate content based on analytics and feedback.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="p-6 text-center text-white/80 sm:p-12">
-        Thank you to{" "}
-        <a
-          href="https://edelsonphotography.com/"
-          target="_blank"
-          className="font-semibold hover:text-white"
-          rel="noreferrer"
-        >
-          Josh Edelson
-        </a>
-        ,{" "}
-        <a
-          href="https://www.newrevmedia.com/"
-          target="_blank"
-          className="font-semibold hover:text-white"
-          rel="noreferrer"
-        >
-          Jenny Morgan
-        </a>
-        , and{" "}
-        <a
-          href="https://www.garysextonphotography.com/"
-          target="_blank"
-          className="font-semibold hover:text-white"
-          rel="noreferrer"
-        >
-          Gary Sexton
-        </a>{" "}
-        for the pictures.
-      </footer>
     </>
   );
 };
 
 export default Home;
-
-export async function getStaticProps() {
-  const results = await cloudinary.v2.search
-    .expression(`folder:${process.env.CLOUDINARY_FOLDER}/*`)
-    .sort_by("public_id", "desc")
-    .max_results(400)
-    .execute();
-  let reducedResults: ImageProps[] = [];
-
-  let i = 0;
-  for (let result of results.resources) {
-    reducedResults.push({
-      id: i,
-      height: result.height,
-      width: result.width,
-      public_id: result.public_id,
-      format: result.format,
-    });
-    i++;
-  }
-
-  const blurImagePromises = results.resources.map((image: ImageProps) => {
-    return getBase64ImageUrl(image);
-  });
-  const imagesWithBlurDataUrls = await Promise.all(blurImagePromises);
-
-  for (let i = 0; i < reducedResults.length; i++) {
-    reducedResults[i].blurDataUrl = imagesWithBlurDataUrls[i];
-  }
-
-  return {
-    props: {
-      images: reducedResults,
-    },
-  };
-}
