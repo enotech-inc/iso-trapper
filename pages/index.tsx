@@ -1,174 +1,184 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useEffect, useRef } from "react";
-import Bridge from "../components/Icons/Bridge";
-import Logo from "../components/Icons/Logo";
-import Modal from "../components/Modal";
-import cloudinary from "../utils/cloudinary";
-import getBase64ImageUrl from "../utils/generateBlurPlaceholder";
-import type { ImageProps } from "../utils/types";
-import { useLastViewedPhoto } from "../utils/useLastViewedPhoto";
 
-const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
-  const router = useRouter();
-  const { photoId } = router.query;
-  const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto();
-
-  const lastViewedPhotoRef = useRef<HTMLAnchorElement>(null);
-
-  useEffect(() => {
-    // This effect keeps track of the last viewed photo in the modal to keep the index page in sync when the user navigates back
-    if (lastViewedPhoto && !photoId) {
-      lastViewedPhotoRef.current.scrollIntoView({ block: "center" });
-      setLastViewedPhoto(null);
-    }
-  }, [photoId, lastViewedPhoto, setLastViewedPhoto]);
-
+const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Next.js Conf 2022 Photos</title>
+        <title>Iso Trapper: UI/UX Framework Overview</title>
         <meta
-          property="og:image"
-          content="https://nextjsconf-pics.vercel.app/og-image.png"
-        />
-        <meta
-          name="twitter:image"
-          content="https://nextjsconf-pics.vercel.app/og-image.png"
+          name="description"
+          content="A clear, approachable explanation of Iso Trapper as a UI/UX design framework, including core principles, workflow integration, and practical applications."
         />
       </Head>
-      <main className="mx-auto max-w-[1960px] p-4">
-        {photoId && (
-          <Modal
-            images={images}
-            onClose={() => {
-              setLastViewedPhoto(photoId);
-            }}
-          />
-        )}
-        <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4">
-          <div className="after:content relative mb-5 flex h-[629px] flex-col items-center justify-end gap-4 overflow-hidden rounded-lg bg-white/10 px-6 pb-16 pt-64 text-center text-white shadow-highlight after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight lg:pt-0">
-            <div className="absolute inset-0 flex items-center justify-center opacity-20">
-              <span className="flex max-h-full max-w-full items-center justify-center">
-                <Bridge />
-              </span>
-              <span className="absolute left-0 right-0 bottom-0 h-[400px] bg-gradient-to-b from-black/0 via-black to-black"></span>
+      <main className="mx-auto flex max-w-5xl flex-col gap-12 px-6 py-12 text-white">
+        <header className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-highlight">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/60">
+            Iso Trapper in UI/UX
+          </p>
+          <h1 className="mt-4 text-4xl font-semibold leading-tight md:text-5xl">
+            Iso Trapper is a structured design and development framework that
+            helps teams build intuitive, consistent user experiences.
+          </h1>
+          <p className="mt-4 max-w-3xl text-lg text-white/70">
+            Think of Iso Trapper as a practical system for designing interfaces
+            that stay coherent as they grow. It gives designers and developers a
+            shared playbook so layouts, components, and interactions feel
+            connected, predictable, and easy to use.
+          </p>
+        </header>
+
+        <section className="rounded-2xl border border-white/10 bg-black/40 p-8">
+          <h2 className="text-2xl font-semibold">What Iso Trapper Is</h2>
+          <p className="mt-3 text-white/70">
+            Iso Trapper is a concept that combines a visual framework and a
+            lightweight programming approach. It defines how interface elements
+            are organized in “iso” layers (visual groupings) and how they are
+            “trapped” into reusable, predictable patterns. In practice, that
+            means teams treat sections, cards, navigation, and interactions as
+            composable modules with clear rules.
+          </p>
+          <div className="mt-6 grid gap-6 md:grid-cols-2">
+            <div>
+              <h3 className="text-lg font-semibold">How It Functions</h3>
+              <ul className="mt-3 list-disc space-y-2 pl-6 text-white/70">
+                <li>
+                  Organizes the interface into layers: structure, content, and
+                  interaction.
+                </li>
+                <li>
+                  Locks in spacing, typography, and component behavior for
+                  consistency.
+                </li>
+                <li>
+                  Encourages reusable building blocks instead of one-off designs.
+                </li>
+              </ul>
             </div>
-            <Logo />
-            <h1 className="mt-8 mb-4 text-base font-bold uppercase tracking-widest">
-              2022 Event Photos
-            </h1>
-            <p className="max-w-[40ch] text-white/75 sm:max-w-[32ch]">
-              Our incredible Next.js community got together in San Francisco for
-              our first ever in-person conference!
-            </p>
-            <a
-              className="pointer z-10 mt-6 rounded-lg border border-white bg-white px-3 py-2 text-sm font-semibold text-black transition hover:bg-white/10 hover:text-white md:mt-4"
-              href="https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-cloudinary&project-name=nextjs-image-gallery&repository-name=with-cloudinary&env=NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,CLOUDINARY_API_KEY,CLOUDINARY_API_SECRET,CLOUDINARY_FOLDER&envDescription=API%20Keys%20from%20Cloudinary%20needed%20to%20run%20this%20application"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Clone and Deploy
-            </a>
+            <div>
+              <h3 className="text-lg font-semibold">Core Principles</h3>
+              <ul className="mt-3 list-disc space-y-2 pl-6 text-white/70">
+                <li>Clarity first: every section has a defined purpose.</li>
+                <li>Modularity: components can be assembled like a kit.</li>
+                <li>
+                  Predictability: interactions behave the same across the site.
+                </li>
+                <li>
+                  Scalability: the system grows without losing visual harmony.
+                </li>
+              </ul>
+            </div>
           </div>
-          {images.map(({ id, public_id, format, blurDataUrl }) => (
-            <Link
-              key={id}
-              href={`/?photoId=${id}`}
-              as={`/p/${id}`}
-              ref={id === Number(lastViewedPhoto) ? lastViewedPhotoRef : null}
-              shallow
-              className="after:content group relative mb-5 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
-            >
-              <Image
-                alt="Next.js Conf photo"
-                className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
-                style={{ transform: "translate3d(0, 0, 0)" }}
-                placeholder="blur"
-                blurDataURL={blurDataUrl}
-                src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_720/${public_id}.${format}`}
-                width={720}
-                height={480}
-                sizes="(max-width: 640px) 100vw,
-                  (max-width: 1280px) 50vw,
-                  (max-width: 1536px) 33vw,
-                  25vw"
-              />
-            </Link>
-          ))}
-        </div>
+        </section>
+
+        <section className="rounded-2xl border border-white/10 bg-black/40 p-8">
+          <h2 className="text-2xl font-semibold">
+            How It Fits Into the Design & Development Process
+          </h2>
+          <div className="mt-4 space-y-4 text-white/70">
+            <p>
+              Iso Trapper integrates from the earliest discovery phase. Designers
+              use it to map user journeys into clear, repeatable layouts.
+              Developers then implement those layouts as shared components,
+              ensuring that every new page stays aligned with the same rules.
+            </p>
+            <p>
+              This alignment makes collaboration smoother: designers can hand off
+              clear specifications and developers can build faster with less
+              rework.
+            </p>
+          </div>
+          <div className="mt-6 grid gap-6 md:grid-cols-3">
+            <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+              <h3 className="text-base font-semibold">Discovery</h3>
+              <p className="mt-2 text-sm text-white/70">
+                Map user goals into a clear section structure and prioritize key
+                actions.
+              </p>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+              <h3 className="text-base font-semibold">Design</h3>
+              <p className="mt-2 text-sm text-white/70">
+                Build a component library with defined layouts, spacing, and
+                states.
+              </p>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+              <h3 className="text-base font-semibold">Development</h3>
+              <p className="mt-2 text-sm text-white/70">
+                Implement reusable modules that map directly to the design
+                system.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="rounded-2xl border border-white/10 bg-black/40 p-8">
+          <h2 className="text-2xl font-semibold">Practical Applications</h2>
+          <p className="mt-3 text-white/70">
+            Iso Trapper works well for marketing sites, SaaS dashboards, and
+            e-commerce experiences—anywhere consistency and speed matter.
+          </p>
+          <div className="mt-6 grid gap-6 lg:grid-cols-3">
+            {[
+              {
+                title: "Responsive Layouts",
+                body: "Grid-based sections adapt to device sizes while keeping hierarchy intact.",
+              },
+              {
+                title: "Intuitive Navigation",
+                body: "Navigation modules use consistent placement and labels, reducing user confusion.",
+              },
+              {
+                title: "Engaging Interactions",
+                body: "Micro-interactions follow shared timing and motion rules for a cohesive feel.",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="rounded-xl border border-white/10 bg-white/5 p-6"
+              >
+                <h3 className="text-lg font-semibold">{item.title}</h3>
+                <p className="mt-2 text-white/70">{item.body}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="rounded-2xl border border-white/10 bg-black/40 p-8">
+          <h2 className="text-2xl font-semibold">Benefits for Teams</h2>
+          <ul className="mt-4 list-disc space-y-2 pl-6 text-white/70">
+            <li>Improves usability by making interfaces easier to predict.</li>
+            <li>Streamlines workflows through reusable components.</li>
+            <li>Reduces design debt by keeping patterns consistent.</li>
+            <li>Boosts engagement with clear visual hierarchy.</li>
+          </ul>
+        </section>
+
+        <section className="rounded-2xl border border-white/10 bg-white/5 p-8">
+          <h2 className="text-2xl font-semibold">Examples & Scenarios</h2>
+          <div className="mt-6 grid gap-6 md:grid-cols-2">
+            <div className="rounded-xl border border-white/10 bg-black/40 p-6">
+              <h3 className="text-lg font-semibold">SaaS Product Landing Page</h3>
+              <p className="mt-2 text-white/70">
+                A team defines a hero, feature grid, testimonials, and CTA as
+                reusable modules. When launching a new feature, they can reuse
+                the same layout without rethinking spacing or visual hierarchy.
+              </p>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-black/40 p-6">
+              <h3 className="text-lg font-semibold">E-commerce Category Page</h3>
+              <p className="mt-2 text-white/70">
+                Product cards, filters, and promotion banners follow the same
+                iso layout rules, creating a consistent experience that builds
+                shopper confidence across categories.
+              </p>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="p-6 text-center text-white/80 sm:p-12">
-        Thank you to{" "}
-        <a
-          href="https://edelsonphotography.com/"
-          target="_blank"
-          className="font-semibold hover:text-white"
-          rel="noreferrer"
-        >
-          Josh Edelson
-        </a>
-        ,{" "}
-        <a
-          href="https://www.newrevmedia.com/"
-          target="_blank"
-          className="font-semibold hover:text-white"
-          rel="noreferrer"
-        >
-          Jenny Morgan
-        </a>
-        , and{" "}
-        <a
-          href="https://www.garysextonphotography.com/"
-          target="_blank"
-          className="font-semibold hover:text-white"
-          rel="noreferrer"
-        >
-          Gary Sexton
-        </a>{" "}
-        for the pictures.
-      </footer>
     </>
   );
 };
 
 export default Home;
-
-export async function getStaticProps() {
-  const results = await cloudinary.v2.search
-    .expression(`folder:${process.env.CLOUDINARY_FOLDER}/*`)
-    .sort_by("public_id", "desc")
-    .max_results(400)
-    .execute();
-  let reducedResults: ImageProps[] = [];
-
-  let i = 0;
-  for (let result of results.resources) {
-    reducedResults.push({
-      id: i,
-      height: result.height,
-      width: result.width,
-      public_id: result.public_id,
-      format: result.format,
-    });
-    i++;
-  }
-
-  const blurImagePromises = results.resources.map((image: ImageProps) => {
-    return getBase64ImageUrl(image);
-  });
-  const imagesWithBlurDataUrls = await Promise.all(blurImagePromises);
-
-  for (let i = 0; i < reducedResults.length; i++) {
-    reducedResults[i].blurDataUrl = imagesWithBlurDataUrls[i];
-  }
-
-  return {
-    props: {
-      images: reducedResults,
-    },
-  };
-}
