@@ -121,6 +121,15 @@ const Home: NextPage = () => {
       ],
     },
   ];
+  const primaryNav = ["Explore", "Collections", "Screens", "Resources"];
+  const secondaryNav = [
+    "Trending",
+    "New",
+    "Curated",
+    "Themes",
+    "Industries",
+    "Guides",
+  ];
 
   return (
     <>
@@ -150,27 +159,60 @@ const Home: NextPage = () => {
                 </p>
               </div>
             </div>
-            <div className="flex flex-wrap items-center gap-5 text-sm font-semibold text-slate-600">
-              {["Explore", "Collections", "Screens", "Resources"].map(
-                (item) => (
-                  <button
-                    key={item}
-                    className="transition hover:text-slate-900"
-                  >
-                    {item}
-                  </button>
-                )
-              )}
-            </div>
+            <nav aria-label="Primary" className="text-sm font-semibold">
+              <ul className="flex flex-wrap items-center gap-5 text-slate-600">
+                {primaryNav.map((item) => {
+                  const isActive = item === "Explore";
+                  return (
+                    <li key={item}>
+                      <a
+                        aria-current={isActive ? "page" : undefined}
+                        className={`relative transition hover:text-slate-900 ${
+                          isActive
+                            ? "text-slate-900 after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-slate-900"
+                            : ""
+                        }`}
+                        href={`#${item.toLowerCase()}`}
+                      >
+                        {item}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
             <div className="flex w-full flex-col gap-3 md:w-auto md:flex-row md:items-center">
               <div className="relative w-full md:w-72">
                 <input
                   className="w-full rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-sm focus:border-slate-400 focus:outline-none"
+                  aria-label="Search screens"
                   placeholder="Search 120k+ screens"
                 />
               </div>
               <Button size="md">Get Access</Button>
             </div>
+            <nav
+              aria-label="Explore subsections"
+              className="flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-500"
+            >
+              {secondaryNav.map((item) => {
+                const isActive = item === "Trending";
+                return (
+                  <button
+                    key={item}
+                    aria-pressed={isActive}
+                    className={`rounded-full border px-3 py-1.5 transition ${
+                      isActive
+                        ? "border-slate-900 bg-slate-900 text-white"
+                        : "border-slate-200 text-slate-600 hover:border-slate-300 hover:text-slate-900"
+                    }`}
+                    type="button"
+                  >
+                    {item}
+                  </button>
+                );
+              })}
+            </nav>
           </IsoZone>
         }
         action={
