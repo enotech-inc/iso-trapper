@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
 import { IsoTrapperLayout } from "../components/iso/IsoTrapperLayout";
 import { IsoZone } from "../components/iso/IsoZone";
 import { Badge } from "../components/ui/badge";
@@ -13,204 +12,220 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
-import { BaseDialog } from "../components/ui/dialog";
-import { Tabs } from "../components/ui/tabs";
-import { Toast } from "../components/ui/toast";
 
 const Home: NextPage = () => {
-  const [open, setOpen] = useState(false);
+  const collections = [
+    {
+      title: "Onboarding flows",
+      description: "Curated journeys from top product teams.",
+      count: "1,240 screens",
+    },
+    {
+      title: "Fintech dashboards",
+      description: "Trusted layouts for money movement and clarity.",
+      count: "860 screens",
+    },
+    {
+      title: "Marketplace checkout",
+      description: "Conversion-first patterns across platforms.",
+      count: "940 screens",
+    },
+  ];
+
+  const showcases = [
+    {
+      name: "Tidal",
+      category: "Streaming · iOS",
+      accent: "from-slate-900 via-slate-800 to-slate-700",
+    },
+    {
+      name: "Linear",
+      category: "Productivity · Web",
+      accent: "from-indigo-900 via-indigo-700 to-slate-800",
+    },
+    {
+      name: "Monzo",
+      category: "Banking · Android",
+      accent: "from-rose-700 via-rose-600 to-slate-800",
+    },
+  ];
+
+  const insights = [
+    {
+      title: "Search 120k+ screens",
+      description: "Instant access to real product UI patterns.",
+    },
+    {
+      title: "Save inspiration boards",
+      description: "Organize flows by project, client, or sprint.",
+    },
+    {
+      title: "Stay aligned with teams",
+      description: "Share updates without exporting decks.",
+    },
+  ];
 
   return (
     <>
       <Head>
-        <title>Iso Trapper UI Framework</title>
+        <title>Iso Trapper UI Library</title>
         <meta
           name="description"
-          content="Iso Trapper dashboard showcasing zoned isometric layout and reusable zone components."
+          content="A refined design library inspired by Mobbin's clean and modern product discovery experience."
         />
       </Head>
       <IsoTrapperLayout
         navigation={
-          // Navigation zone: dark, anchored surface to keep routing decisions isolated.
-          <IsoZone variant="navigation" className="flex h-full flex-col gap-8">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
-                Iso Trapper
-              </p>
-              <h1 className="mt-3 text-2xl font-semibold">Control Hub</h1>
-              <p className="mt-2 text-sm text-white/70">
-                Primary routes stay contained here to reduce cognitive load.
-              </p>
+          <IsoZone
+            variant="navigation"
+            className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between"
+          >
+            <div className="flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-900 text-sm font-semibold text-white">
+                IT
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-slate-900">
+                  Iso Trapper
+                </p>
+                <p className="text-xs text-slate-500">
+                  Product design library
+                </p>
+              </div>
             </div>
-            <nav className="flex flex-col gap-3 text-sm">
-              {[
-                "Overview",
-                "Zone Library",
-                "Telemetry",
-                "Automation",
-                "Settings",
-              ].map((item) => (
-                <button
-                  key={item}
-                  className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-left text-white/80 transition hover:bg-white/10"
-                >
-                  <span>{item}</span>
-                  <Badge tone="accent" className="bg-white/10 text-white">
-                    Live
-                  </Badge>
-                </button>
-              ))}
-            </nav>
-            <Card className="border-white/10 bg-white/5 text-white">
-              <CardHeader>
-                <CardTitle className="text-white">Zone Health</CardTitle>
-                <CardDescription className="text-white/70">
-                  Iso layers in sync.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-2 text-white/70">
-                <div className="flex items-center justify-between">
-                  <span>Navigation</span>
-                  <span className="text-emerald-300">Stable</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span>Action</span>
-                  <span className="text-emerald-300">Stable</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span>Content</span>
-                  <span className="text-amber-300">Warming</span>
-                </div>
-              </CardContent>
-            </Card>
+            <div className="flex flex-wrap items-center gap-5 text-sm font-semibold text-slate-600">
+              {["Explore", "Collections", "Screens", "Resources"].map(
+                (item) => (
+                  <button
+                    key={item}
+                    className="transition hover:text-slate-900"
+                  >
+                    {item}
+                  </button>
+                )
+              )}
+            </div>
+            <div className="flex w-full flex-col gap-3 md:w-auto md:flex-row md:items-center">
+              <div className="relative w-full md:w-72">
+                <input
+                  className="w-full rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-sm focus:border-slate-400 focus:outline-none"
+                  placeholder="Search 120k+ screens"
+                />
+              </div>
+              <Button size="md">Get Access</Button>
+            </div>
           </IsoZone>
         }
         action={
-          // Action zone: elevated bar for commands and filters, keeping actions scoped.
-          <IsoZone variant="action" className="flex flex-col gap-4">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
-                  Action Zone
+          <IsoZone variant="action" className="space-y-10">
+            <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+              <div className="max-w-2xl space-y-5">
+                <Badge tone="accent">New this week</Badge>
+                <h1 className="text-4xl font-semibold leading-tight text-slate-900 md:text-5xl">
+                  Find pixel-perfect product inspiration in seconds.
+                </h1>
+                <p className="text-base text-slate-600 md:text-lg">
+                  Explore real app flows, save the screens you love, and move
+                  from idea to execution faster with a clean, focused discovery
+                  experience.
                 </p>
-                <h2 className="mt-2 text-xl font-semibold">
-                  Iso Trapper Command Deck
-                </h2>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Button size="lg">Start exploring</Button>
+                  <Button variant="secondary" size="lg">
+                    Watch overview
+                  </Button>
+                </div>
               </div>
-              <div className="flex flex-wrap items-center gap-3">
-                <Button variant="secondary">Generate Report</Button>
-                <Button onClick={() => setOpen(true)}>Open Dialog</Button>
-              </div>
+              <Card className="w-full max-w-sm p-6">
+                <CardHeader>
+                  <CardTitle className="text-lg">
+                    Today&apos;s highlights
+                  </CardTitle>
+                  <CardDescription>
+                    Most saved flows in the last 24 hours.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {[
+                    {
+                      label: "AI assistants",
+                      count: "482 saves",
+                    },
+                    {
+                      label: "Travel booking",
+                      count: "319 saves",
+                    },
+                    {
+                      label: "Fitness onboarding",
+                      count: "208 saves",
+                    },
+                  ].map((item) => (
+                    <div
+                      key={item.label}
+                      className="flex items-center justify-between text-sm"
+                    >
+                      <span className="font-semibold text-slate-700">
+                        {item.label}
+                      </span>
+                      <span className="text-slate-500">{item.count}</span>
+                    </div>
+                  ))}
+                </CardContent>
+                <CardFooter>
+                  <Button variant="ghost" size="sm">
+                    View trends
+                  </Button>
+                </CardFooter>
+              </Card>
             </div>
-            <Tabs
-              tabs={[
-                { label: "Today", value: "today" },
-                { label: "Week", value: "week" },
-                { label: "Month", value: "month" },
-                { label: "Quarter", value: "quarter" },
-              ]}
-              active="week"
-            />
+            <div className="flex flex-wrap gap-3">
+              {[
+                "iOS",
+                "Android",
+                "Web",
+                "Fintech",
+                "E-commerce",
+                "Onboarding",
+              ].map((item) => (
+                <button
+                  key={item}
+                  className="rounded-full border border-slate-200 px-4 py-2 text-xs font-semibold text-slate-600 transition hover:border-slate-300 hover:text-slate-900"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
           </IsoZone>
         }
         content={
-          // Content zone: layered cards and data tables with depth to guide scanning.
-          <IsoZone variant="content" className="space-y-6">
-            <Card className="overflow-hidden border-slate-200/70 bg-white">
-              <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-                <div className="space-y-5 p-8">
-                  <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-                    Launch Ready
-                  </div>
-                  <div className="space-y-4">
-                    <h2 className="text-3xl font-semibold leading-tight text-slate-900 md:text-4xl">
-                      Build a landing page hero that makes your value impossible
-                      to ignore.
-                    </h2>
-                    <p className="text-base text-slate-600 md:text-lg">
-                      Capture attention in seconds with a bold headline, a clear
-                      promise, and a call to action that feels effortless to
-                      say yes to.
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap items-center gap-3">
-                    <Button className="px-6 py-3 text-base">
-                      Start Your Free Preview
-                    </Button>
-                    <Button variant="ghost" className="text-slate-600">
-                      See it in action
-                    </Button>
-                  </div>
-                </div>
-                <div className="relative flex flex-col justify-between gap-6 bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 p-8 text-white">
-                  <div className="space-y-3">
-                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
-                      Design cues
-                    </p>
-                    <h3 className="text-xl font-semibold">
-                      Suggested visual direction
-                    </h3>
-                    <p className="text-sm text-white/70">
-                      Pair the hero copy with a cinematic gradient backdrop and
-                      plenty of negative space so the headline can breathe.
-                    </p>
-                  </div>
-                  <div className="space-y-4 text-sm text-white/80">
-                    <div className="rounded-2xl border border-white/15 bg-white/5 p-4">
-                      <p className="font-semibold text-white">Background</p>
-                      <p>
-                        Soft gradient or blurred cityscape image with a dark
-                        overlay for contrast.
-                      </p>
-                    </div>
-                    <div className="rounded-2xl border border-white/15 bg-white/5 p-4">
-                      <p className="font-semibold text-white">Typography</p>
-                      <p>
-                        Use a confident geometric sans-serif with generous line
-                        height and tight letter spacing on the headline.
-                      </p>
-                    </div>
-                    <div className="rounded-2xl border border-white/15 bg-white/5 p-4">
-                      <p className="font-semibold text-white">Layout</p>
-                      <p>
-                        Keep the CTA above the fold with a contrasting button
-                        color and a subtle hover glow.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+          <IsoZone variant="content" className="space-y-8">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                  Collections
+                </p>
+                <h2 className="mt-2 text-2xl font-semibold text-slate-900">
+                  Explore curated UI libraries
+                </h2>
               </div>
-            </Card>
+              <Button variant="secondary" size="sm">
+                Browse all
+              </Button>
+            </div>
             <div className="grid gap-6 lg:grid-cols-3">
-              {[
-                {
-                  title: "Active Pipelines",
-                  value: "18",
-                  detail: "+6 this week",
-                  tone: "success" as const,
-                },
-                {
-                  title: "Queued Builds",
-                  value: "42",
-                  detail: "2 flagged",
-                  tone: "warning" as const,
-                },
-                {
-                  title: "Support Tickets",
-                  value: "9",
-                  detail: "Auto-prioritized",
-                  tone: "accent" as const,
-                },
-              ].map((metric) => (
-                <Card key={metric.title} className="p-5">
+              {collections.map((collection) => (
+                <Card key={collection.title} className="p-6">
                   <CardHeader>
-                    <CardDescription>{metric.title}</CardDescription>
-                    <CardTitle className="text-3xl font-semibold">
-                      {metric.value}
-                    </CardTitle>
+                    <CardTitle>{collection.title}</CardTitle>
+                    <CardDescription>{collection.description}</CardDescription>
                   </CardHeader>
-                  <CardFooter>
-                    <Badge tone={metric.tone}>{metric.detail}</Badge>
+                  <CardFooter className="mt-6 justify-between">
+                    <span className="text-xs font-semibold text-slate-500">
+                      {collection.count}
+                    </span>
+                    <Button variant="ghost" size="sm">
+                      Open
+                    </Button>
                   </CardFooter>
                 </Card>
               ))}
@@ -219,162 +234,96 @@ const Home: NextPage = () => {
             <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
               <Card className="p-6">
                 <CardHeader>
-                  <CardTitle>Zone Activity</CardTitle>
+                  <CardTitle>Trending screen sets</CardTitle>
                   <CardDescription>
-                    Workloads aligned to their Iso layers.
+                    A quick scan of the UI styles teams are saving the most.
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <div className="overflow-hidden rounded-2xl border border-slate-200/70">
-                    <table className="w-full text-left text-sm">
-                      <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-400">
-                        <tr>
-                          <th className="px-4 py-3">Zone</th>
-                          <th className="px-4 py-3">Owner</th>
-                          <th className="px-4 py-3">Status</th>
-                          <th className="px-4 py-3 text-right">Load</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {[
-                          {
-                            zone: "Navigation",
-                            owner: "UI Systems",
-                            status: "Stable",
-                            load: "68%",
-                          },
-                          {
-                            zone: "Action",
-                            owner: "Ops",
-                            status: "Optimized",
-                            load: "54%",
-                          },
-                          {
-                            zone: "Content",
-                            owner: "Experience",
-                            status: "Calibrating",
-                            load: "72%",
-                          },
-                        ].map((row) => (
-                          <tr
-                            key={row.zone}
-                            className="border-t border-slate-200/70 text-slate-600"
-                          >
-                            <td className="px-4 py-3 font-semibold text-slate-900">
-                              {row.zone}
-                            </td>
-                            <td className="px-4 py-3">{row.owner}</td>
-                            <td className="px-4 py-3">
-                              <Badge tone="neutral">{row.status}</Badge>
-                            </td>
-                            <td className="px-4 py-3 text-right font-semibold">
-                              {row.load}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                <CardContent className="grid gap-4 md:grid-cols-3">
+                  {showcases.map((showcase) => (
+                    <div
+                      key={showcase.name}
+                      className="space-y-3"
+                    >
+                      <div
+                        className={`h-28 rounded-2xl bg-gradient-to-br ${showcase.accent}`}
+                      />
+                      <div>
+                        <p className="text-sm font-semibold text-slate-800">
+                          {showcase.name}
+                        </p>
+                        <p className="text-xs text-slate-500">
+                          {showcase.category}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
                 </CardContent>
               </Card>
 
-              <Card className="flex flex-col justify-between p-6">
+              <Card className="flex h-full flex-col p-6">
                 <CardHeader>
-                  <CardTitle>Iso Trapper Brief</CardTitle>
+                  <CardTitle>Why teams choose it</CardTitle>
                   <CardDescription>
-                    Each zone keeps context and actions scoped to reduce
-                    overload.
+                    A polished workflow built for daily inspiration.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-center justify-between rounded-xl border border-slate-200/70 px-4 py-3">
-                    <span className="text-sm font-semibold text-slate-700">
-                      Action Pods
-                    </span>
-                    <Badge tone="success">Aligned</Badge>
-                  </div>
-                  <div className="flex items-center justify-between rounded-xl border border-slate-200/70 px-4 py-3">
-                    <span className="text-sm font-semibold text-slate-700">
-                      Content Tiles
-                    </span>
-                    <Badge tone="accent">Curated</Badge>
-                  </div>
-                  <div className="flex items-center justify-between rounded-xl border border-slate-200/70 px-4 py-3">
-                    <span className="text-sm font-semibold text-slate-700">
-                      Feedback Rails
-                    </span>
-                    <Badge tone="warning">Queued</Badge>
-                  </div>
+                <CardContent className="space-y-4">
+                  {insights.map((item) => (
+                    <div
+                      key={item.title}
+                      className="rounded-2xl border border-slate-200/70 px-4 py-3"
+                    >
+                      <p className="text-sm font-semibold text-slate-800">
+                        {item.title}
+                      </p>
+                      <p className="text-xs text-slate-500">
+                        {item.description}
+                      </p>
+                    </div>
+                  ))}
                 </CardContent>
-                <CardFooter>
-                  <Button variant="secondary" className="w-full">
-                    View Zone Playbook
-                  </Button>
+                <CardFooter className="mt-auto">
+                  <Button size="sm">Request invite</Button>
                 </CardFooter>
               </Card>
             </div>
           </IsoZone>
         }
         feedback={
-          // Feedback zone: grounded rail for system status and alerts.
-          <IsoZone variant="feedback" className="grid gap-4 lg:grid-cols-3">
-            <div className="space-y-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/50">
-                Feedback Zone
-              </p>
-              <h3 className="text-lg font-semibold">Status Stream</h3>
-              <p className="text-sm text-white/70">
-                Notifications live here so primary workflows stay focused.
-              </p>
+          <IsoZone variant="feedback" className="space-y-6">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                  Teams
+                </p>
+                <h3 className="mt-2 text-2xl font-semibold text-slate-900">
+                  Design faster with shared inspiration
+                </h3>
+                <p className="mt-2 text-sm text-slate-600">
+                  Keep collections organized, synced, and ready for your next
+                  build.
+                </p>
+              </div>
+              <Button size="lg">Join the library</Button>
             </div>
-            <Toast tone="success" className="lg:col-span-2">
-              <div className="flex items-center justify-between gap-4">
-                <div>
-                  <p className="text-sm font-semibold">Deploy complete</p>
-                  <p className="text-xs text-emerald-800/70">
-                    Iso zones updated with latest layouts.
-                  </p>
+            <div className="grid gap-4 md:grid-cols-3">
+              {[
+                "Saved collections stay private by default.",
+                "Smart tags keep flows easy to find.",
+                "Weekly updates highlight new patterns.",
+              ].map((note) => (
+                <div
+                  key={note}
+                  className="rounded-2xl border border-slate-200/70 bg-white px-4 py-3 text-sm text-slate-600"
+                >
+                  {note}
                 </div>
-                <Badge tone="success" className="bg-emerald-200/80">
-                  2 min ago
-                </Badge>
-              </div>
-            </Toast>
-            <Toast tone="warning" className="lg:col-span-2">
-              <div className="flex items-center justify-between gap-4">
-                <div>
-                  <p className="text-sm font-semibold">Attention needed</p>
-                  <p className="text-xs text-amber-800/70">
-                    Content zone queue at 72% capacity.
-                  </p>
-                </div>
-                <Button variant="ghost" className="text-amber-900">
-                  Review
-                </Button>
-              </div>
-            </Toast>
+              ))}
+            </div>
           </IsoZone>
         }
       />
-      <BaseDialog
-        open={open}
-        onClose={setOpen}
-        title="Iso Trapper Dialog"
-        description="Dialogs stay in the action zone to keep focus centered."
-      >
-        <div className="space-y-4 text-sm text-slate-600">
-          <p>
-            Use dialogs sparingly to confirm intent while keeping the rest of the
-            layout stable.
-          </p>
-          <div className="flex justify-end gap-2">
-            <Button variant="ghost" onClick={() => setOpen(false)}>
-              Cancel
-            </Button>
-            <Button onClick={() => setOpen(false)}>Confirm</Button>
-          </div>
-        </div>
-      </BaseDialog>
     </>
   );
 };
