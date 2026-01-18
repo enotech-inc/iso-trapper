@@ -65,6 +65,63 @@ const Home: NextPage = () => {
     },
   ];
 
+  const mobileGuidelines = [
+    {
+      title: "Navigation flow",
+      description: "Keep primary destinations reachable and predictable.",
+      points: [
+        "Use a 3-5 item bottom navigation for core destinations.",
+        "Provide a visible in-app back pattern and clear home anchor.",
+        "Progressively reveal secondary routes to reduce noise.",
+      ],
+    },
+    {
+      title: "Touch interactions",
+      description: "Design every action for thumbs, not cursors.",
+      points: [
+        "Use 44-48px tap targets with generous spacing.",
+        "Add pressed states to confirm every tap.",
+        "Avoid hover-only UI or hidden actions.",
+      ],
+    },
+    {
+      title: "Responsive layout",
+      description: "Build for the smallest screens first.",
+      points: [
+        "Rely on fluid grids and single-column content stacks.",
+        "Scale type with clamp to protect readability.",
+        "Avoid fixed heights that break across devices.",
+      ],
+    },
+    {
+      title: "Loading performance",
+      description: "Speed is the first impression on mobile.",
+      points: [
+        "Ship only critical CSS and JS on first load.",
+        "Lazy-load below-the-fold media and galleries.",
+        "Reserve image space to prevent layout shifts.",
+      ],
+    },
+    {
+      title: "Accessibility",
+      description: "Make experiences usable for everyone.",
+      points: [
+        "Ensure strong contrast and legible text sizes.",
+        "Label icons and controls for screen readers.",
+        "Respect reduced-motion and OS text settings.",
+      ],
+    },
+    {
+      title: "Engagement",
+      description: "Keep momentum with gentle feedback.",
+      points: [
+        "Use micro-animations under 300ms.",
+        "Provide skeletons or spinners while loading.",
+        "Keep copy concise and scannable.",
+      ],
+    },
+  ];
+
   return (
     <>
       <Head>
@@ -122,17 +179,17 @@ const Home: NextPage = () => {
               <div className="max-w-2xl space-y-5">
                 <Badge tone="accent">New this week</Badge>
                 <h1 className="text-4xl font-semibold leading-tight text-slate-900 md:text-5xl">
-                  Find pixel-perfect product inspiration in seconds.
+                  Craft mobile experiences that feel effortless.
                 </h1>
                 <p className="text-base text-slate-600 md:text-lg">
-                  Explore real app flows, save the screens you love, and move
-                  from idea to execution faster with a clean, focused discovery
-                  experience.
+                  Build responsive layouts, thumb-friendly navigation, and
+                  lightning-fast flows with a blueprint inspired by the best
+                  mobile UI patterns.
                 </p>
                 <div className="flex flex-wrap items-center gap-3">
-                  <Button size="lg">Start exploring</Button>
+                  <Button size="lg">Start optimizing</Button>
                   <Button variant="secondary" size="lg">
-                    Watch overview
+                    View playbook
                   </Button>
                 </div>
               </div>
@@ -229,6 +286,42 @@ const Home: NextPage = () => {
                   </CardFooter>
                 </Card>
               ))}
+            </div>
+
+            <div className="space-y-6">
+              <div className="flex flex-wrap items-center justify-between gap-4">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                    Mobile UX blueprint
+                  </p>
+                  <h2 className="mt-2 text-2xl font-semibold text-slate-900">
+                    Optimize every touchpoint for mobile-first design
+                  </h2>
+                </div>
+                <Button variant="secondary" size="sm">
+                  Download checklist
+                </Button>
+              </div>
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {mobileGuidelines.map((guide) => (
+                  <Card key={guide.title} className="p-6">
+                    <CardHeader>
+                      <CardTitle>{guide.title}</CardTitle>
+                      <CardDescription>{guide.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <ul className="space-y-2 text-sm text-slate-600">
+                        {guide.points.map((point) => (
+                          <li key={point} className="flex gap-2">
+                            <span className="mt-1 h-2 w-2 rounded-full bg-slate-900" />
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
 
             <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
