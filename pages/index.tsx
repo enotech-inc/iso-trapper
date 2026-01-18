@@ -280,35 +280,56 @@ const Home: NextPage = () => {
 
               <Card className="flex flex-col justify-between p-6">
                 <CardHeader>
-                  <CardTitle>Iso Trapper Brief</CardTitle>
+                  <CardTitle>The Idea Forge</CardTitle>
                   <CardDescription>
-                    Each zone keeps context and actions scoped to reduce
-                    overload.
+                    A practical guide to turning sparks into original concepts.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-center justify-between rounded-xl border border-slate-200/70 px-4 py-3">
-                    <span className="text-sm font-semibold text-slate-700">
-                      Action Pods
-                    </span>
-                    <Badge tone="success">Aligned</Badge>
+                <CardContent className="space-y-4 text-sm text-slate-600">
+                  <p>
+                    Creativity starts with input. Fill your mind with diverse
+                    materials, then let them mix. A walk, a new playlist, or a
+                    conversation outside your field can become the unexpected
+                    bridge your brain needs.
+                  </p>
+                  <div className="rounded-xl border border-slate-200/70 px-4 py-3">
+                    <p className="font-semibold text-slate-700">
+                      Three moves that unlock fresh ideas
+                    </p>
+                    <ul className="mt-2 space-y-2">
+                      <li>
+                        <span className="font-semibold text-slate-700">
+                          Reframe the question:
+                        </span>{" "}
+                        Ask “What if the opposite were true?” or “How would a
+                        child solve this?”
+                      </li>
+                      <li>
+                        <span className="font-semibold text-slate-700">
+                          Make tiny prototypes:
+                        </span>{" "}
+                        Sketch, outline, or storyboard before judging the
+                        quality.
+                      </li>
+                      <li>
+                        <span className="font-semibold text-slate-700">
+                          Collect collisions:
+                        </span>{" "}
+                        Pair two unrelated notes and see what new shape
+                        appears.
+                      </li>
+                    </ul>
                   </div>
-                  <div className="flex items-center justify-between rounded-xl border border-slate-200/70 px-4 py-3">
-                    <span className="text-sm font-semibold text-slate-700">
-                      Content Tiles
-                    </span>
-                    <Badge tone="accent">Curated</Badge>
-                  </div>
-                  <div className="flex items-center justify-between rounded-xl border border-slate-200/70 px-4 py-3">
-                    <span className="text-sm font-semibold text-slate-700">
-                      Feedback Rails
-                    </span>
-                    <Badge tone="warning">Queued</Badge>
-                  </div>
+                  <p>
+                    Finally, protect the spark. Schedule short “idea sessions,”
+                    keep a capture list, and share early drafts with someone
+                    curious. Momentum builds when you treat ideas like seeds: a
+                    little water today grows into something surprising tomorrow.
+                  </p>
                 </CardContent>
                 <CardFooter>
                   <Button variant="secondary" className="w-full">
-                    View Zone Playbook
+                    Explore Creativity Rituals
                   </Button>
                 </CardFooter>
               </Card>
