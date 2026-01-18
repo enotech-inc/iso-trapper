@@ -116,6 +116,71 @@ const Home: NextPage = () => {
         content={
           // Content zone: layered cards and data tables with depth to guide scanning.
           <IsoZone variant="content" className="space-y-6">
+            <Card className="overflow-hidden border-slate-200/70 bg-white">
+              <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+                <div className="space-y-5 p-8">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                    Launch Ready
+                  </div>
+                  <div className="space-y-4">
+                    <h2 className="text-3xl font-semibold leading-tight text-slate-900 md:text-4xl">
+                      Build a landing page hero that makes your value impossible
+                      to ignore.
+                    </h2>
+                    <p className="text-base text-slate-600 md:text-lg">
+                      Capture attention in seconds with a bold headline, a clear
+                      promise, and a call to action that feels effortless to
+                      say yes to.
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <Button className="px-6 py-3 text-base">
+                      Start Your Free Preview
+                    </Button>
+                    <Button variant="ghost" className="text-slate-600">
+                      See it in action
+                    </Button>
+                  </div>
+                </div>
+                <div className="relative flex flex-col justify-between gap-6 bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 p-8 text-white">
+                  <div className="space-y-3">
+                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
+                      Design cues
+                    </p>
+                    <h3 className="text-xl font-semibold">
+                      Suggested visual direction
+                    </h3>
+                    <p className="text-sm text-white/70">
+                      Pair the hero copy with a cinematic gradient backdrop and
+                      plenty of negative space so the headline can breathe.
+                    </p>
+                  </div>
+                  <div className="space-y-4 text-sm text-white/80">
+                    <div className="rounded-2xl border border-white/15 bg-white/5 p-4">
+                      <p className="font-semibold text-white">Background</p>
+                      <p>
+                        Soft gradient or blurred cityscape image with a dark
+                        overlay for contrast.
+                      </p>
+                    </div>
+                    <div className="rounded-2xl border border-white/15 bg-white/5 p-4">
+                      <p className="font-semibold text-white">Typography</p>
+                      <p>
+                        Use a confident geometric sans-serif with generous line
+                        height and tight letter spacing on the headline.
+                      </p>
+                    </div>
+                    <div className="rounded-2xl border border-white/15 bg-white/5 p-4">
+                      <p className="font-semibold text-white">Layout</p>
+                      <p>
+                        Keep the CTA above the fold with a contrasting button
+                        color and a subtle hover glow.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Card>
             <div className="grid gap-6 lg:grid-cols-3">
               {[
                 {
