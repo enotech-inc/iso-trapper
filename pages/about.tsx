@@ -43,16 +43,11 @@ const About: NextPage = () => {
                 "Traps respond to signals (hover, scroll, focus) to reveal contextual details at the right moment.",
             },
           ].map((item) => (
-            <Card
-              key={item.title}
-              className="border-slate-800 bg-slate-900/70 text-slate-200"
-            >
+            <Card key={item.title}>
               <CardHeader>
-                <CardTitle className="text-white">{item.title}</CardTitle>
+                <CardTitle>{item.title}</CardTitle>
               </CardHeader>
-              <CardContent className="text-sm text-slate-300">
-                {item.detail}
-              </CardContent>
+              <CardContent>{item.detail}</CardContent>
             </Card>
           ))}
         </div>
@@ -86,16 +81,11 @@ const About: NextPage = () => {
                 "Information reveals step by step, ensuring context stays digestible.",
             },
           ].map((item) => (
-            <Card
-              key={item.title}
-              className="border-slate-800 bg-slate-900/70 text-slate-200"
-            >
+            <Card key={item.title}>
               <CardHeader>
-                <CardTitle className="text-white">{item.title}</CardTitle>
+                <CardTitle>{item.title}</CardTitle>
               </CardHeader>
-              <CardContent className="text-sm text-slate-300">
-                {item.detail}
-              </CardContent>
+              <CardContent>{item.detail}</CardContent>
             </Card>
           ))}
         </div>

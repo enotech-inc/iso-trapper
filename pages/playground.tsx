@@ -15,7 +15,7 @@ const TrapRevealTile = dynamic(
     ),
   {
     loading: () => (
-      <div className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6 text-sm text-slate-400">
+      <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] p-6 text-sm text-[color:var(--text-soft)]">
         Loading Trap Reveal Tile...
       </div>
     ),
@@ -30,7 +30,7 @@ const TrapScrollLockLane = dynamic(
     ),
   {
     loading: () => (
-      <div className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6 text-sm text-slate-400">
+      <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] p-6 text-sm text-[color:var(--text-soft)]">
         Loading Trap Scroll Lock Lane...
       </div>
     ),
@@ -45,7 +45,7 @@ const TrapFocusPath = dynamic(
     ),
   {
     loading: () => (
-      <div className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6 text-sm text-slate-400">
+      <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] p-6 text-sm text-[color:var(--text-soft)]">
         Loading Trap Focus Path...
       </div>
     ),

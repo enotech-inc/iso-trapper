@@ -8,7 +8,7 @@ interface TabsProps extends HTMLAttributes<HTMLDivElement> {
 export function Tabs({ tabs, active, className = "", ...props }: TabsProps) {
   return (
     <div
-      className={`flex flex-wrap items-center gap-2 rounded-full bg-slate-100 p-1 ${className}`}
+      className={`flex flex-wrap items-center gap-2 rounded-full bg-[color:var(--surface-strong)] p-1 ${className}`}
       {...props}
     >
       {tabs.map((tab) => (
@@ -16,8 +16,8 @@ export function Tabs({ tabs, active, className = "", ...props }: TabsProps) {
           key={tab.value}
           className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
             active === tab.value
-              ? "bg-white text-slate-900 shadow-sm"
-              : "text-slate-500"
+              ? "bg-[color:var(--surface)] text-[color:var(--text-primary)] shadow-[var(--shadow-card)]"
+              : "text-[color:var(--text-soft)]"
           }`}
         >
           {tab.label}

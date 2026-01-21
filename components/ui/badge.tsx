@@ -5,10 +5,14 @@ interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 const toneStyles: Record<NonNullable<BadgeProps["tone"]>, string> = {
-  neutral: "bg-slate-100 text-slate-600",
-  accent: "bg-indigo-100 text-indigo-600",
-  success: "bg-emerald-100 text-emerald-700",
-  warning: "bg-amber-100 text-amber-700",
+  neutral:
+    "bg-[color:var(--badge-neutral-bg)] text-[color:var(--badge-neutral-text)]",
+  accent:
+    "bg-[color:var(--badge-accent-bg)] text-[color:var(--badge-accent-text)]",
+  success:
+    "bg-[color:var(--badge-success-bg)] text-[color:var(--badge-success-text)]",
+  warning:
+    "bg-[color:var(--badge-warning-bg)] text-[color:var(--badge-warning-text)]",
 };
 
 export function Badge({ tone = "neutral", className = "", ...props }: BadgeProps) {
