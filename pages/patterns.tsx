@@ -33,15 +33,22 @@ const Patterns: NextPage = () => {
         description="Each pattern includes an explanation, interaction states, and a working demo."
       >
         <div className="space-y-10">
-          <Card className="border-slate-800 bg-slate-900/70 text-slate-200">
+          <Card>
             <CardHeader>
-              <CardTitle className="text-white">Pattern overview</CardTitle>
+              <CardTitle>Pattern overview</CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-slate-300">
+            <CardContent>
               {trapRegistry.map((trap) => (
-                <div key={trap.trapId} className="border-b border-slate-800 py-3 last:border-b-0">
-                  <p className="font-semibold text-white">{trap.title}</p>
-                  <p className="text-xs text-slate-400">{trap.a11yNotes}</p>
+                <div
+                  key={trap.trapId}
+                  className="border-b border-[color:var(--border)] py-3 last:border-b-0"
+                >
+                  <p className="font-semibold text-[color:var(--text-primary)]">
+                    {trap.title}
+                  </p>
+                  <p className="text-xs text-[color:var(--text-soft)]">
+                    {trap.a11yNotes}
+                  </p>
                 </div>
               ))}
             </CardContent>

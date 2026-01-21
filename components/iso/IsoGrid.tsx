@@ -12,7 +12,7 @@ export function IsoGrid({
 }: IsoGridProps) {
   return (
     <div
-      className={`relative grid gap-6 rounded-3xl border border-slate-800 bg-slate-900/70 p-6 shadow-[0_30px_80px_rgba(15,23,42,0.45)] [transform-style:preserve-3d] ${className}`}
+      className={`relative grid gap-6 rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] p-6 shadow-[var(--shadow-card-strong)] [transform-style:preserve-3d] ${className}`}
       style={{
         perspective: "1400px",
         transform: "rotateX(18deg) rotateZ(45deg)",

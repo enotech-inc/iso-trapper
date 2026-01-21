@@ -71,8 +71,8 @@ export function TrapScrollLockLane() {
           </Badge>
           <Badge tone="accent">Progress: {Math.round(progress * 100)}%</Badge>
         </div>
-        <div className="rounded-3xl border border-slate-800 bg-slate-950/70 p-5">
-          <div className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-slate-500">
+        <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface-strong)] p-5">
+          <div className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-[color:var(--text-soft)]">
             <span>Lane sequence</span>
             <span>{inView ? "Locked" : "Idle"}</span>
           </div>
@@ -85,13 +85,13 @@ export function TrapScrollLockLane() {
                   key={step}
                   className={`flex items-center gap-3 rounded-2xl border px-4 py-3 text-sm transition ${
                     isActive
-                      ? "border-indigo-500/60 bg-indigo-500/10 text-white"
-                      : "border-slate-800 text-slate-400"
+                      ? "border-[color:var(--accent)] bg-[color:var(--accent-soft)] text-[color:var(--text-primary)]"
+                      : "border-[color:var(--border)] text-[color:var(--text-soft)]"
                   }`}
                 >
                   <span
                     className={`h-2.5 w-2.5 rounded-full ${
-                      isActive ? "bg-indigo-400" : "bg-slate-700"
+                      isActive ? "bg-[color:var(--accent)]" : "bg-[color:var(--border)]"
                     }`}
                   />
                   <span>{step}</span>
@@ -99,7 +99,7 @@ export function TrapScrollLockLane() {
               );
             })}
           </div>
-          <div className="mt-5 h-2 w-full overflow-hidden rounded-full bg-slate-800">
+          <div className="mt-5 h-2 w-full overflow-hidden rounded-full bg-[color:var(--surface-muted)]">
             <div
               className="h-full rounded-full bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-400"
               style={{ width: `${Math.round(progress * 100)}%` }}

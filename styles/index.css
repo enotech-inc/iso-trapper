@@ -2,6 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  color-scheme: light;
+  --page-bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-muted: rgba(255, 255, 255, 0.72);
+  --surface-strong: #f1f5f9;
+  --border: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-muted: #475569;
+  --text-soft: #64748b;
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-soft: rgba(79, 70, 229, 0.14);
+  --badge-neutral-bg: #e2e8f0;
+  --badge-neutral-text: #475569;
+  --badge-accent-bg: rgba(79, 70, 229, 0.14);
+  --badge-accent-text: #4338ca;
+  --badge-success-bg: rgba(16, 185, 129, 0.14);
+  --badge-success-text: #047857;
+  --badge-warning-bg: rgba(245, 158, 11, 0.2);
+  --badge-warning-text: #92400e;
+  --shadow-card: 0 12px 30px rgba(15, 23, 42, 0.08);
+  --shadow-card-strong: 0 18px 40px rgba(15, 23, 42, 0.12);
+  --glow-primary: rgba(59, 130, 246, 0.12);
+  --glow-secondary: rgba(124, 58, 237, 0.12);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --page-bg: #020617;
+  --surface: rgba(15, 23, 42, 0.7);
+  --surface-muted: rgba(15, 23, 42, 0.5);
+  --surface-strong: #0f172a;
+  --border: #1e293b;
+  --text-primary: #f8fafc;
+  --text-muted: #cbd5f5;
+  --text-soft: #94a3b8;
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+  --accent-soft: rgba(99, 102, 241, 0.18);
+  --badge-neutral-bg: rgba(148, 163, 184, 0.16);
+  --badge-neutral-text: #e2e8f0;
+  --badge-accent-bg: rgba(99, 102, 241, 0.22);
+  --badge-accent-text: #e0e7ff;
+  --badge-success-bg: rgba(16, 185, 129, 0.2);
+  --badge-success-text: #d1fae5;
+  --badge-warning-bg: rgba(245, 158, 11, 0.24);
+  --badge-warning-text: #fef3c7;
+  --shadow-card: 0 18px 40px rgba(15, 23, 42, 0.45);
+  --shadow-card-strong: 0 24px 55px rgba(15, 23, 42, 0.5);
+  --glow-primary: rgba(59, 130, 246, 0.2);
+  --glow-secondary: rgba(124, 58, 237, 0.22);
+}
+
 @supports (font: -apple-system-body) and (-webkit-appearance: none) {
   img[loading="lazy"] {
     clip-path: inset(0.6px);

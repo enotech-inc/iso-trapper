@@ -5,7 +5,7 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {}
 export function Card({ className = "", ...props }: CardProps) {
   return (
     <div
-      className={`rounded-2xl border border-slate-200 bg-white shadow-[0_8px_20px_rgba(15,23,42,0.06)] ${className}`}
+      className={`rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] text-[color:var(--text-primary)] shadow-[var(--shadow-card)] ${className}`}
       {...props}
     />
   );
@@ -21,7 +21,10 @@ interface CardTitleProps extends HTMLAttributes<HTMLHeadingElement> {}
 
 export function CardTitle({ className = "", ...props }: CardTitleProps) {
   return (
-    <h3 className={`text-lg font-semibold text-slate-900 ${className}`} {...props} />
+    <h3
+      className={`text-lg font-semibold text-[color:var(--text-primary)] ${className}`}
+      {...props}
+    />
   );
 }
 
@@ -29,14 +32,16 @@ interface CardDescriptionProps extends HTMLAttributes<HTMLParagraphElement> {}
 
 export function CardDescription({ className = "", ...props }: CardDescriptionProps) {
   return (
-    <p className={`text-sm text-slate-500 ${className}`} {...props} />
+    <p className={`text-sm text-[color:var(--text-soft)] ${className}`} {...props} />
   );
 }
 
 interface CardContentProps extends HTMLAttributes<HTMLDivElement> {}
 
 export function CardContent({ className = "", ...props }: CardContentProps) {
-  return <div className={`text-sm text-slate-600 ${className}`} {...props} />;
+  return (
+    <div className={`text-sm text-[color:var(--text-muted)] ${className}`} {...props} />
+  );
 }
 
 interface CardFooterProps extends HTMLAttributes<HTMLDivElement> {}

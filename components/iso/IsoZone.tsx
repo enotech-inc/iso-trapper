@@ -1,10 +1,10 @@
 import type { HTMLAttributes } from "react";
 
 const zoneStyles = {
-  navigation: "bg-white",
-  action: "bg-slate-50",
-  content: "bg-white",
-  feedback: "bg-slate-50",
+  navigation: "bg-[color:var(--surface)]",
+  action: "bg-[color:var(--surface-strong)]",
+  content: "bg-[color:var(--surface)]",
+  feedback: "bg-[color:var(--surface-strong)]",
 };
 
 export type IsoZoneVariant = keyof typeof zoneStyles;
@@ -16,7 +16,7 @@ interface IsoZoneProps extends HTMLAttributes<HTMLDivElement> {
 export function IsoZone({ variant, className = "", ...props }: IsoZoneProps) {
   return (
     <section
-      className={`rounded-3xl border border-slate-200/80 p-6 shadow-[0_10px_30px_rgba(15,23,42,0.08)] ${
+      className={`rounded-3xl border border-[color:var(--border)] p-6 shadow-[var(--shadow-card)] ${
         zoneStyles[variant]
       } ${className}`}
       {...props}

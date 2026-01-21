@@ -79,24 +79,26 @@ export function TrapRevealTile() {
             <IsoTile
               aria-pressed={isPinned}
               onClick={handleClick}
-              className="h-40 w-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700"
+              className="h-40 w-full bg-gradient-to-br from-[color:var(--surface-strong)] via-[color:var(--surface)] to-[color:var(--surface-strong)]"
             >
-              <span className="text-sm font-semibold text-white">
+              <span className="text-sm font-semibold text-[color:var(--text-primary)]">
                 Iso Data Node
               </span>
-              <span className="text-xs text-slate-300">
+              <span className="text-xs text-[color:var(--text-muted)]">
                 Hover to reveal. Click to pin.
               </span>
             </IsoTile>
             <motion.div
-              className="pointer-events-none absolute inset-x-3 bottom-3 rounded-xl border border-slate-700 bg-slate-950/90 p-3 text-xs text-slate-200"
+              className="pointer-events-none absolute inset-x-3 bottom-3 rounded-xl border border-[color:var(--border)] bg-[color:var(--surface-strong)] p-3 text-xs text-[color:var(--text-primary)] shadow-[var(--shadow-card)]"
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: isTriggered || isPinned ? 1 : 0, y: 0 }}
               transition={{ duration: reducedMotion ? 0 : 0.2 }}
               aria-hidden={!isTriggered && !isPinned}
             >
-              <p className="font-semibold text-white">Metadata panel</p>
-              <p className="text-[11px] text-slate-400">
+              <p className="font-semibold text-[color:var(--text-primary)]">
+                Metadata panel
+              </p>
+              <p className="text-[11px] text-[color:var(--text-soft)]">
                 Coordinates locked · Depth layer 02
               </p>
             </motion.div>
@@ -108,16 +110,16 @@ export function TrapRevealTile() {
           onClose={() => dispatch({ type: "ARM" })}
           reducedMotion={reducedMotion}
         >
-          <div className="space-y-3 text-sm text-slate-300">
+          <div className="space-y-3 text-sm text-[color:var(--text-muted)]">
             <p>
               This docked panel stays visible while the tile is pinned. Use it to
               expose extended data, contextual actions, or detail panels.
             </p>
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-              <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
+            <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-strong)] p-4">
+              <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--text-soft)]">
                 Pin payload
               </p>
-              <p className="mt-2 text-sm text-slate-200">
+              <p className="mt-2 text-sm text-[color:var(--text-primary)]">
                 Depth 02 · Tile ID #AX-224 · Sync ready
               </p>
             </div>

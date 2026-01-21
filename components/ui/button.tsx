@@ -7,10 +7,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<NonNullable<ButtonProps["variant"]>, string> = {
   primary:
-    "bg-slate-900 text-white shadow-[0_12px_24px_rgba(15,23,42,0.25)] hover:bg-slate-800",
+    "bg-[color:var(--accent)] text-white shadow-[var(--shadow-card)] hover:bg-[color:var(--accent-hover)]",
   secondary:
-    "bg-white text-slate-900 border border-slate-200/60 shadow-[0_10px_20px_rgba(15,23,42,0.12)] hover:border-slate-300",
-  ghost: "bg-transparent text-slate-600 hover:bg-slate-100",
+    "bg-[color:var(--surface)] text-[color:var(--text-primary)] border border-[color:var(--border)] shadow-[var(--shadow-card)] hover:bg-[color:var(--surface-muted)]",
+  ghost:
+    "bg-transparent text-[color:var(--text-muted)] hover:bg-[color:var(--surface-muted)]",
 };
 
 const sizeStyles: Record<NonNullable<ButtonProps["size"]>, string> = {

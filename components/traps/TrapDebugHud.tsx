@@ -9,8 +9,8 @@ export function TrapDebugHud() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 space-y-2 rounded-2xl border border-slate-700 bg-slate-950/90 p-4 text-xs text-slate-200 shadow-[0_20px_40px_rgba(15,23,42,0.45)]">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
+    <div className="fixed bottom-6 right-6 z-50 space-y-2 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 text-xs text-[color:var(--text-primary)] shadow-[var(--shadow-card-strong)]">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[color:var(--text-soft)]">
         Debug HUD
       </p>
       <div className="flex flex-wrap gap-2">

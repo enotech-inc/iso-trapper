@@ -17,7 +17,7 @@ export function DepthLayer({
 }: DepthLayerProps) {
   return (
     <div
-      className={`rounded-3xl border border-slate-800 bg-slate-900/70 ${depthStyles[depth]} ${className}`}
+      className={`rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] ${depthStyles[depth]} ${className}`}
       {...props}
     />
   );

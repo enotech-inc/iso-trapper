@@ -19,7 +19,7 @@ export function TrapDock({
   reducedMotion = false,
 }: TrapDockProps) {
   return (
-    <div className="relative min-h-[260px] rounded-3xl border border-slate-800 bg-slate-900/70 p-6 text-slate-200">
+    <div className="relative min-h-[260px] rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] p-6 text-[color:var(--text-primary)]">
       {open ? (
         <motion.div
           key="dock"
@@ -30,7 +30,9 @@ export function TrapDock({
           className="space-y-4"
         >
           <div className="flex items-center justify-between">
-            <p className="text-sm font-semibold text-white">{title}</p>
+            <p className="text-sm font-semibold text-[color:var(--text-primary)]">
+              {title}
+            </p>
             {onClose ? (
               <Button variant="ghost" size="sm" onClick={onClose}>
                 Close
@@ -40,7 +42,7 @@ export function TrapDock({
           {children}
         </motion.div>
       ) : (
-        <div className="flex h-full flex-col items-center justify-center gap-3 text-sm text-slate-500">
+        <div className="flex h-full flex-col items-center justify-center gap-3 text-sm text-[color:var(--text-soft)]">
           <p>Dock awaiting a pinned trap.</p>
           <p className="text-xs">Click a tile to pin it here.</p>
         </div>

@@ -111,21 +111,21 @@ export function TrapFocusPath() {
                 onClick={() => handleSelect(index)}
                 className={`h-24 ${
                   highlight
-                    ? "bg-gradient-to-br from-indigo-500/30 via-slate-900 to-slate-900"
+                    ? "bg-gradient-to-br from-[color:var(--accent-soft)] via-[color:var(--surface)] to-[color:var(--surface)]"
                     : ""
                 }`}
               >
-                <span className="text-sm font-semibold text-white">
+                <span className="text-sm font-semibold text-[color:var(--text-primary)]">
                   {node.label}
                 </span>
-                <span className="text-[11px] text-slate-400">
+                <span className="text-[11px] text-[color:var(--text-soft)]">
                   {inPath ? "Path node" : "Idle node"}
                 </span>
               </IsoTile>
             );
           })}
         </div>
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-[color:var(--text-soft)]">
           Keyboard: Use arrow keys to move. Click to trigger the path. Pin to
           lock the highlight.
         </p>

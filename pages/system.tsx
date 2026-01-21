@@ -44,11 +44,11 @@ const System: NextPage = () => {
               ))}
             </IsoGrid>
           </IsoPanel>
-          <Card className="border-slate-800 bg-slate-900/70 text-slate-200">
+          <Card>
             <CardHeader>
-              <CardTitle className="text-white">Trap states</CardTitle>
+              <CardTitle>Trap states</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3 text-sm text-slate-300">
+            <CardContent className="space-y-3">
               {[
                 {
                   label: "Armed",
@@ -65,12 +65,14 @@ const System: NextPage = () => {
               ].map((state) => (
                 <div
                   key={state.label}
-                  className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4"
+                  className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-strong)] p-4"
                 >
-                  <p className="text-sm font-semibold text-white">
+                  <p className="text-sm font-semibold text-[color:var(--text-primary)]">
                     {state.label}
                   </p>
-                  <p className="text-xs text-slate-400">{state.detail}</p>
+                  <p className="text-xs text-[color:var(--text-soft)]">
+                    {state.detail}
+                  </p>
                 </div>
               ))}
             </CardContent>
@@ -85,25 +87,28 @@ const System: NextPage = () => {
       >
         <div className="grid gap-6 md:grid-cols-2">
           {trapRegistry.map((trap) => (
-            <Card
-              key={trap.trapId}
-              className="border-slate-800 bg-slate-900/70 text-slate-200"
-            >
+            <Card key={trap.trapId}>
               <CardHeader>
-                <CardTitle className="text-white">{trap.title}</CardTitle>
+                <CardTitle>{trap.title}</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3 text-sm text-slate-300">
+              <CardContent className="space-y-3">
                 <p>
-                  <span className="text-xs uppercase text-slate-500">States</span>
+                  <span className="text-xs uppercase text-[color:var(--text-soft)]">
+                    States
+                  </span>
                   <br />
                   {trap.states.join(" · ")}
                 </p>
                 <p>
-                  <span className="text-xs uppercase text-slate-500">Events</span>
+                  <span className="text-xs uppercase text-[color:var(--text-soft)]">
+                    Events
+                  </span>
                   <br />
                   {trap.events.join(" · ")}
                 </p>
-                <p className="text-xs text-slate-400">{trap.a11yNotes}</p>
+                <p className="text-xs text-[color:var(--text-soft)]">
+                  {trap.a11yNotes}
+                </p>
               </CardContent>
             </Card>
           ))}
