@@ -1,465 +1,177 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { IsoTrapperLayout } from "../components/iso/IsoTrapperLayout";
-import { IsoZone } from "../components/iso/IsoZone";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Footer } from "../components/layout/Footer";
+import { Navbar } from "../components/layout/Navbar";
+import { Section } from "../components/layout/Section";
+import { Shell } from "../components/layout/Shell";
+import { DepthLayer } from "../components/iso/DepthLayer";
+import { IsoGrid } from "../components/iso/IsoGrid";
+import { IsoPanel } from "../components/iso/IsoPanel";
+import { IsoTile } from "../components/iso/IsoTile";
+import { TrapDebugHud } from "../components/traps/TrapDebugHud";
+import { useTrapContext } from "../components/traps/TrapProvider";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import { fadeUp } from "../lib/motionPresets";
 
 const Home: NextPage = () => {
-  const collections = [
-    {
-      title: "Onboarding flows",
-      description: "Curated journeys from top product teams.",
-      count: "1,240 screens",
-    },
-    {
-      title: "Fintech dashboards",
-      description: "Trusted layouts for money movement and clarity.",
-      count: "860 screens",
-    },
-    {
-      title: "Marketplace checkout",
-      description: "Conversion-first patterns across platforms.",
-      count: "940 screens",
-    },
-  ];
-
-  const showcases = [
-    {
-      name: "Tidal",
-      category: "Streaming · iOS",
-      accent: "from-slate-900 via-slate-800 to-slate-700",
-    },
-    {
-      name: "Linear",
-      category: "Productivity · Web",
-      accent: "from-indigo-900 via-indigo-700 to-slate-800",
-    },
-    {
-      name: "Monzo",
-      category: "Banking · Android",
-      accent: "from-rose-700 via-rose-600 to-slate-800",
-    },
-  ];
-
-  const insights = [
-    {
-      title: "Search 120k+ screens",
-      description: "Instant access to real product UI patterns.",
-    },
-    {
-      title: "Save inspiration boards",
-      description: "Organize flows by project, client, or sprint.",
-    },
-    {
-      title: "Stay aligned with teams",
-      description: "Share updates without exporting decks.",
-    },
-  ];
-
-  const mobileGuidelines = [
-    {
-      title: "Navigation flow",
-      description: "Keep primary destinations reachable and predictable.",
-      points: [
-        "Use a 3-5 item bottom navigation for core destinations.",
-        "Provide a visible in-app back pattern and clear home anchor.",
-        "Progressively reveal secondary routes to reduce noise.",
-      ],
-    },
-    {
-      title: "Touch interactions",
-      description: "Design every action for thumbs, not cursors.",
-      points: [
-        "Use 44-48px tap targets with generous spacing.",
-        "Add pressed states to confirm every tap.",
-        "Avoid hover-only UI or hidden actions.",
-      ],
-    },
-    {
-      title: "Responsive layout",
-      description: "Build for the smallest screens first.",
-      points: [
-        "Rely on fluid grids and single-column content stacks.",
-        "Scale type with clamp to protect readability.",
-        "Avoid fixed heights that break across devices.",
-      ],
-    },
-    {
-      title: "Loading performance",
-      description: "Speed is the first impression on mobile.",
-      points: [
-        "Ship only critical CSS and JS on first load.",
-        "Lazy-load below-the-fold media and galleries.",
-        "Reserve image space to prevent layout shifts.",
-      ],
-    },
-    {
-      title: "Accessibility",
-      description: "Make experiences usable for everyone.",
-      points: [
-        "Ensure strong contrast and legible text sizes.",
-        "Label icons and controls for screen readers.",
-        "Respect reduced-motion and OS text settings.",
-      ],
-    },
-    {
-      title: "Engagement",
-      description: "Keep momentum with gentle feedback.",
-      points: [
-        "Use micro-animations under 300ms.",
-        "Provide skeletons or spinners while loading.",
-        "Keep copy concise and scannable.",
-      ],
-    },
-  ];
-  const primaryNav = ["Explore", "Collections", "Screens", "Resources"];
-  const secondaryNav = [
-    "Trending",
-    "New",
-    "Curated",
-    "Themes",
-    "Industries",
-    "Guides",
-  ];
+  const { debug, setDebug, reducedMotion } = useTrapContext();
 
   return (
-    <>
+    <Shell>
       <Head>
-        <title>Iso Trapper UI Library</title>
+        <title>Iso Trapper · Spatial UI Lab</title>
         <meta
           name="description"
-          content="A refined design library inspired by Mobbin's clean and modern product discovery experience."
+          content="Iso Trapper is a spatial UI playground showcasing isometric layouts and trap-based interactions."
         />
       </Head>
-      <IsoTrapperLayout
-        navigation={
-          <IsoZone
-            variant="navigation"
-            className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between"
-          >
-            <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-900 text-sm font-semibold text-white">
-                IT
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-slate-900">
-                  Iso Trapper
-                </p>
-                <p className="text-xs text-slate-500">
-                  Product design library
-                </p>
-              </div>
+      <Navbar onToggleDebug={() => setDebug(!debug)} debugEnabled={debug} />
+      <TrapDebugHud />
+
+      <Section
+        eyebrow="Concept"
+        title="Isometric surfaces with trap-based interactions"
+        description="Iso Trapper is a living UI lab where tiles, panels, and lanes behave like spatial nodes. Hover, scroll, and focus to reveal context, pin details, and route paths across the grid."
+      >
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <DepthLayer className="space-y-6 p-6">
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge tone="accent">Trap registry active</Badge>
+              <Badge tone="neutral">Depth layer: 02</Badge>
             </div>
-            <nav aria-label="Primary" className="text-sm font-semibold">
-              <ul className="flex flex-wrap items-center gap-5 text-slate-600">
-                {primaryNav.map((item) => {
-                  const isActive = item === "Explore";
-                  return (
-                    <li key={item}>
-                      <a
-                        aria-current={isActive ? "page" : undefined}
-                        className={`relative transition hover:text-slate-900 ${
-                          isActive
-                            ? "text-slate-900 after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-slate-900"
-                            : ""
-                        }`}
-                        href={`#${item.toLowerCase()}`}
-                      >
-                        {item}
-                      </a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </nav>
-            <div className="flex w-full flex-col gap-3 md:w-auto md:flex-row md:items-center">
-              <div className="relative w-full md:w-72">
-                <input
-                  className="w-full rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-sm focus:border-slate-400 focus:outline-none"
-                  aria-label="Search screens"
-                  placeholder="Search 120k+ screens"
-                />
-              </div>
-              <Button size="md">Get Access</Button>
-            </div>
-            <nav
-              aria-label="Explore subsections"
-              className="flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-500"
-            >
-              {secondaryNav.map((item) => {
-                const isActive = item === "Trending";
-                return (
-                  <button
-                    key={item}
-                    aria-pressed={isActive}
-                    className={`rounded-full border px-3 py-1.5 transition ${
-                      isActive
-                        ? "border-slate-900 bg-slate-900 text-white"
-                        : "border-slate-200 text-slate-600 hover:border-slate-300 hover:text-slate-900"
-                    }`}
-                    type="button"
-                  >
-                    {item}
-                  </button>
-                );
-              })}
-            </nav>
-          </IsoZone>
-        }
-        action={
-          <IsoZone variant="action" className="space-y-10">
-            <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-              <div className="max-w-2xl space-y-5">
-                <Badge tone="accent">New this week</Badge>
-                <h1 className="text-4xl font-semibold leading-tight text-slate-900 md:text-5xl">
-                  Craft mobile experiences that feel effortless.
-                </h1>
-                <p className="text-base text-slate-600 md:text-lg">
-                  Build responsive layouts, thumb-friendly navigation, and
-                  lightning-fast flows with a blueprint inspired by the best
-                  mobile UI patterns.
-                </p>
-                <div className="flex flex-wrap items-center gap-3">
-                  <Button size="lg">Start optimizing</Button>
-                  <Button variant="secondary" size="lg">
-                    View playbook
-                  </Button>
-                </div>
-              </div>
-              <Card className="w-full max-w-sm p-6">
-                <CardHeader>
-                  <CardTitle className="text-lg">
-                    Today&apos;s highlights
-                  </CardTitle>
-                  <CardDescription>
-                    Most saved flows in the last 24 hours.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {[
-                    {
-                      label: "AI assistants",
-                      count: "482 saves",
-                    },
-                    {
-                      label: "Travel booking",
-                      count: "319 saves",
-                    },
-                    {
-                      label: "Fitness onboarding",
-                      count: "208 saves",
-                    },
-                  ].map((item) => (
-                    <div
-                      key={item.label}
-                      className="flex items-center justify-between text-sm"
-                    >
-                      <span className="font-semibold text-slate-700">
-                        {item.label}
-                      </span>
-                      <span className="text-slate-500">{item.count}</span>
-                    </div>
-                  ))}
-                </CardContent>
-                <CardFooter>
-                  <Button variant="ghost" size="sm">
-                    View trends
-                  </Button>
-                </CardFooter>
-              </Card>
-            </div>
+            <h1 className="text-3xl font-semibold text-white md:text-4xl">
+              Build modular, isometric UI systems that respond to intent.
+            </h1>
+            <p className="text-sm text-slate-300 md:text-base">
+              Combine 2.5D grids with adaptive traps to create playful, functional
+              interfaces. Each module ships with accessible states, motion
+              presets, and a registry-first architecture.
+            </p>
             <div className="flex flex-wrap gap-3">
-              {[
-                "iOS",
-                "Android",
-                "Web",
-                "Fintech",
-                "E-commerce",
-                "Onboarding",
-              ].map((item) => (
-                <button
-                  key={item}
-                  className="rounded-full border border-slate-200 px-4 py-2 text-xs font-semibold text-slate-600 transition hover:border-slate-300 hover:text-slate-900"
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-          </IsoZone>
-        }
-        content={
-          <IsoZone variant="content" className="space-y-8">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-                  Collections
-                </p>
-                <h2 className="mt-2 text-2xl font-semibold text-slate-900">
-                  Explore curated UI libraries
-                </h2>
-              </div>
-              <Button variant="secondary" size="sm">
-                Browse all
-              </Button>
-            </div>
-            <div className="grid gap-6 lg:grid-cols-3">
-              {collections.map((collection) => (
-                <Card key={collection.title} className="p-6">
-                  <CardHeader>
-                    <CardTitle>{collection.title}</CardTitle>
-                    <CardDescription>{collection.description}</CardDescription>
-                  </CardHeader>
-                  <CardFooter className="mt-6 justify-between">
-                    <span className="text-xs font-semibold text-slate-500">
-                      {collection.count}
-                    </span>
-                    <Button variant="ghost" size="sm">
-                      Open
-                    </Button>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-
-            <div className="space-y-6">
-              <div className="flex flex-wrap items-center justify-between gap-4">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-                    Mobile UX blueprint
-                  </p>
-                  <h2 className="mt-2 text-2xl font-semibold text-slate-900">
-                    Optimize every touchpoint for mobile-first design
-                  </h2>
-                </div>
-                <Button variant="secondary" size="sm">
-                  Download checklist
+              <Button size="lg">Enter playground</Button>
+              <Link href="/system" className="inline-flex">
+                <Button variant="secondary" size="lg">
+                  View system docs
                 </Button>
-              </div>
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {mobileGuidelines.map((guide) => (
-                  <Card key={guide.title} className="p-6">
-                    <CardHeader>
-                      <CardTitle>{guide.title}</CardTitle>
-                      <CardDescription>{guide.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                      <ul className="space-y-2 text-sm text-slate-600">
-                        {guide.points.map((point) => (
-                          <li key={point} className="flex gap-2">
-                            <span className="mt-1 h-2 w-2 rounded-full bg-slate-900" />
-                            <span>{point}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+              </Link>
             </div>
-
-            <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
-              <Card className="p-6">
-                <CardHeader>
-                  <CardTitle>Trending screen sets</CardTitle>
-                  <CardDescription>
-                    A quick scan of the UI styles teams are saving the most.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="grid gap-4 md:grid-cols-3">
-                  {showcases.map((showcase) => (
-                    <div
-                      key={showcase.name}
-                      className="space-y-3"
-                    >
-                      <div
-                        className={`h-28 rounded-2xl bg-gradient-to-br ${showcase.accent}`}
-                      />
-                      <div>
-                        <p className="text-sm font-semibold text-slate-800">
-                          {showcase.name}
-                        </p>
-                        <p className="text-xs text-slate-500">
-                          {showcase.category}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-
-              <Card className="flex h-full flex-col p-6">
-                <CardHeader>
-                  <CardTitle>Why teams choose it</CardTitle>
-                  <CardDescription>
-                    A polished workflow built for daily inspiration.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {insights.map((item) => (
-                    <div
-                      key={item.title}
-                      className="rounded-2xl border border-slate-200/70 px-4 py-3"
-                    >
-                      <p className="text-sm font-semibold text-slate-800">
-                        {item.title}
-                      </p>
-                      <p className="text-xs text-slate-500">
-                        {item.description}
-                      </p>
-                    </div>
-                  ))}
-                </CardContent>
-                <CardFooter className="mt-auto">
-                  <Button size="sm">Request invite</Button>
-                </CardFooter>
-              </Card>
-            </div>
-          </IsoZone>
-        }
-        feedback={
-          <IsoZone variant="feedback" className="space-y-6">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-                  Teams
-                </p>
-                <h3 className="mt-2 text-2xl font-semibold text-slate-900">
-                  Design faster with shared inspiration
-                </h3>
-                <p className="mt-2 text-sm text-slate-600">
-                  Keep collections organized, synced, and ready for your next
-                  build.
-                </p>
-              </div>
-              <Button size="lg">Join the library</Button>
-            </div>
-            <div className="grid gap-4 md:grid-cols-3">
+          </DepthLayer>
+          <IsoPanel className="overflow-hidden">
+            <IsoGrid columns={2} className="bg-transparent p-0 shadow-none">
               {[
-                "Saved collections stay private by default.",
-                "Smart tags keep flows easy to find.",
-                "Weekly updates highlight new patterns.",
-              ].map((note) => (
-                <div
-                  key={note}
-                  className="rounded-2xl border border-slate-200/70 bg-white px-4 py-3 text-sm text-slate-600"
+                "Trap Reveal",
+                "Scroll Lock",
+                "Focus Path",
+                "Docked Panel",
+              ].map((label, index) => (
+                <motion.div
+                  key={label}
+                  initial={reducedMotion ? false : fadeUp.initial}
+                  whileInView={reducedMotion ? undefined : fadeUp.animate}
+                  transition={
+                    reducedMotion
+                      ? { duration: 0 }
+                      : { ...fadeUp.transition, delay: index * 0.1 }
+                  }
+                  viewport={{ once: true, amount: 0.4 }}
+                  className="-rotate-45"
                 >
-                  {note}
-                </div>
+                  <IsoTile className="h-32 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700">
+                    <span className="text-sm font-semibold text-white">
+                      {label}
+                    </span>
+                    <span className="text-[11px] text-slate-400">
+                      Spatial module
+                    </span>
+                  </IsoTile>
+                </motion.div>
               ))}
-            </div>
-          </IsoZone>
-        }
-      />
-    </>
+            </IsoGrid>
+          </IsoPanel>
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Trap Showcase"
+        title="Preview the traps"
+        description="Each trap module is a reusable component with a registry entry, motion presets, and a state machine-like reducer."
+      >
+        <div className="grid gap-6 md:grid-cols-3">
+          {[
+            {
+              title: "Trap Reveal Tile",
+              detail: "Hover reveals metadata, click pins a docked panel.",
+              href: "/playground#reveal",
+            },
+            {
+              title: "Trap Scroll Lock Lane",
+              detail: "Scroll locks a lane and unlocks steps in sequence.",
+              href: "/playground#scroll",
+            },
+            {
+              title: "Trap Focus Path",
+              detail: "Keyboard focus highlights a connected node path.",
+              href: "/playground#focus",
+            },
+          ].map((trap) => (
+            <Card
+              key={trap.title}
+              className="border-slate-800 bg-slate-900/70 text-slate-200"
+            >
+              <CardHeader>
+                <CardTitle className="text-white">{trap.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4 text-sm text-slate-300">
+                <p>{trap.detail}</p>
+                <Link href={trap.href} className="text-indigo-300">
+                  See demo →
+                </Link>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Architecture"
+        title="Modular, accessible, performance-first"
+        description="Trap modules are lazy-loaded, respect reduced motion, and maintain layout stability with docked panels and progress locks."
+      >
+        <div className="grid gap-6 lg:grid-cols-3">
+          {[
+            {
+              title: "Trap registry",
+              detail:
+                "Each trap is defined by state transitions, events, and a11y notes for quick reference.",
+            },
+            {
+              title: "Motion presets",
+              detail:
+                "Shared Framer Motion presets keep animation consistent and easy to disable.",
+            },
+            {
+              title: "Spatial primitives",
+              detail:
+                "Tiles, panels, and depth layers combine into isometric layouts without heavy 3D.",
+            },
+          ].map((item) => (
+            <Card
+              key={item.title}
+              className="border-slate-800 bg-slate-900/70 p-6 text-slate-200"
+            >
+              <CardTitle className="text-white">{item.title}</CardTitle>
+              <p className="mt-3 text-sm text-slate-300">{item.detail}</p>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Footer />
+    </Shell>
   );
 };
 
