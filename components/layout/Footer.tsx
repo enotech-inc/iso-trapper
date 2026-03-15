@@ -10,9 +10,11 @@ const footerLinks = [
 export function Footer() {
   return (
     <footer className="border-t border-slate-200 py-10 dark:border-slate-800">
-      <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm font-semibold text-slate-900 dark:text-white">Isotrapper</p>
+          <p className="text-sm font-semibold text-slate-900 dark:text-white">
+            Isotrapper
+          </p>
           <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
             Build spatial interfaces with predictable trap-based interactions.
           </p>
