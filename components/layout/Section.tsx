@@ -18,25 +18,21 @@ export function Section({
   className = "",
 }: SectionProps) {
   return (
-    <section id={id} className={`space-y-6 ${className}`}>
-      <div className="space-y-3">
+    <section id={id} className={`scroll-mt-24 py-16 sm:py-20 ${className}`}>
+      <div className="mx-auto max-w-3xl text-center sm:text-left">
         {eyebrow ? (
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[color:var(--text-soft)]">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-indigo-600 dark:text-indigo-300">
             {eyebrow}
           </p>
         ) : null}
-        <div className="space-y-2">
-          <h2 className="text-2xl font-semibold text-[color:var(--text-primary)] md:text-3xl">
-            {title}
-          </h2>
-          {description ? (
-            <p className="max-w-2xl text-sm text-[color:var(--text-muted)] md:text-base">
-              {description}
-            </p>
-          ) : null}
-        </div>
+        <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
+          {title}
+        </h2>
+        {description ? (
+          <p className="mt-4 text-base leading-7 text-slate-600 dark:text-slate-300">{description}</p>
+        ) : null}
       </div>
-      {children}
+      {children ? <div className="mt-10">{children}</div> : null}
     </section>
   );
 }
